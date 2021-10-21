@@ -1,24 +1,6 @@
-$(document).ready(function() {
-    getToppings();
-});
-
-$(document).on("keydown", function(e) {
-    // capture the enter key and call submitTopping() if pressed
-    var key = e.which || e.keyCode || e.charCode;
-    if (key === 13) {
-        addTopping();
-    }
-});
-
-$(document).on("click", "#btnSubmit", function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    addTopping();
-});
-
 function addTopping() {
     $.ajax({
-        url: 'pizzapizza.php?action=addTopping',
+        url: 'index.php?action=addTopping',
         data: {
             topping: $("#topping").val()
         },
@@ -38,14 +20,14 @@ function addTopping() {
             }
         },
         error: function() {
-            showError('Error Reaching pizzapizza.php');
+            showError('Error Reaching index.php');
         }
     });
 }
 
 function getToppings() {
     $.ajax({
-        url: 'pizzapizza.php?action=getToppings',
+        url: 'index.php?action=getToppings',
         dataType:"JSON",
         success: function(json) {
 
@@ -77,7 +59,7 @@ function deleteTopping(toppingId){
     console.log(toppingId);
 
     $.ajax({
-        url: 'pizzapizza.php?action=deleteTopping&toppingId='+toppingId,
+        url: 'index.php?action=deleteTopping&toppingId='+toppingId,
         dataType: 'JSON',
         success: function(result) {
 
