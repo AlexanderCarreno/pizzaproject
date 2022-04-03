@@ -21,24 +21,23 @@ function success(pos) {
         style: 'mapbox://styles/mapbox/streets-v11',
         center: lngLat,
         zoom: 13,
-        interactive: false
+        interactive: true
     });
-
-    new mapboxgl.Marker()
+    
+    new mapboxgl.Marker({
+        draggable: true
+    })
         .setLngLat(this.lngLat)
         .addTo(mapa);
+    
 };
   
 function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
 };
 
-
-navigator.geolocation.watchPosition(function(position) {
+if (!navigator.geolocation) {
+    alert('The Browser dose not support Geolocation');
+}else{
     navigator.geolocation.getCurrentPosition(success, error, options);
-},
-function(error) {
-    if (error.code == error.PERMISSION_DENIED)
-    console.log("you denied me :-(");
-});
-  
+}

@@ -294,6 +294,9 @@ function printForm()
 					<!-- Map -->
 					<h4 class="mt-5">Approximate delivery area</h4>
 					<div id='map' style='width: 500px; height: 200px;'></div>
+					<small>
+						Isn't that your address? Don't worry! you can drag the marker to another part of the map
+					</small>
 					<script src="./js/maps.js"></script>
 				</div>
 
