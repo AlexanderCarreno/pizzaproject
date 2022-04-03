@@ -21,6 +21,25 @@ $( document ).ready(function() {
     renderCardToppings(ToppingList);
 });
 
+$( "#payment" ).click(function() {
+    Swal.fire({
+        title: 'Select your payment method',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Paypal',
+        confirmButtonColor: '#0070ba',
+        denyButtonText: `Cash`,
+        denyButtonColor: `#118C4F`
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire('Your order is on its way', '', 'success')
+        } else if (result.isDenied) {
+          Swal.fire('Your order is on its way', '', 'success')
+        }
+      });
+  });
+
 function addDefinedTopping(topping){
     $.ajax({
         url: 'index.php?action=addTopping',
@@ -142,7 +161,7 @@ function updateCost(costToppings) {
         success: function(result) {
             try {
                 json = jQuery.parseJSON(result);
-                console.log(json);
+                //console.log(json);
             } catch (e) {
                 showError("Invalid JSON returned from server: " + result);
                 return;
@@ -163,7 +182,7 @@ function getCost() {
         url: 'index.php?action=getCost',
         dataType:"JSON",
         success: function(json) {
-            console.log(json);
+            //console.log(json);
 
             if (json["success"] === "0") {
                 showError(json["errormsg"]);
@@ -174,7 +193,7 @@ function getCost() {
             }
         },
         error: function(data) {
-            console.log(data);
+            //console.log(data);
             showError('Error Reaching Server');
         }
     });

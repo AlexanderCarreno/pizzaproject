@@ -132,6 +132,8 @@ function printForm()
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 		<!-- Animate.css source -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+		<!-- sweetalert2 soruce -->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	</head>
 
@@ -231,8 +233,23 @@ function printForm()
 						</tr>
 					</tbody>
 					</table>
-					<div class="text-center">
-						<button type="button" class="btn btn-success">Pay order</button>
+					<div class="mt-4 text-center">
+
+						<div class="row">
+							<div class="col-6">
+								<form action="https://www.paypal.com/donate" method="post" target="_top">
+									<input type="hidden" name="hosted_button_id" value="P7D2MFG462U34" />
+									<input type="image" src="https://www.paypalobjects.com/en_US/MX/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+									<img alt="" border="0" src="https://www.paypal.com/en_MX/i/scr/pixel.gif" width="1" height="1" />
+								</form>
+							</div>
+							<div class="col-6">
+								<button id="payment" type="button" class="btn btn-success">Submit Order</button>
+							</div>
+						</div>
+
+
+
 					</div>
 
 
