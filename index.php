@@ -72,6 +72,44 @@ switch($_GET['action']){
 		exit;
 	break;
 
+
+	case 'updateCost': 
+		$result = array();
+		$result['errormsg'] = '';
+		$result['success'] = 0;
+
+		if (isset($_GET['costTopping']) && strlen(str_replace(' ', '', $_GET['costTopping'])) > 0 ) {
+			if (!isset($_SESSION['costTopping'])) {
+				$_SESSION['costTopping'] = array();
+			}
+			$_SESSION['costTopping'] = $_GET['costTopping'];
+			$result['success'] = 1;
+		} else {
+			$result['success'] = 0;
+			$result['errormsg'] = 'No Topping Entered';
+		}
+
+		echo json_encode($result);
+		exit;
+	break;
+
+	case 'getCost'; 
+		$result = array();
+		$result['errormsg'] = '';
+		$result['success'] = 1;
+		$result['costTopping'] = '';
+
+		if (isset($_SESSION['costTopping'])) {
+			$result['costTopping'] = $_SESSION['costTopping'];
+			$result['success'] = 1;
+		}
+
+		echo json_encode($result);
+		exit;
+	break;
+
+
+
 	default: 
 		printForm();
 }
@@ -188,7 +226,7 @@ function printForm()
 								Total:
 							</div>
 						</th>
-						<td><strong>$24.99</strong></td>
+						<td><strong>$<span id="TotalCost">24.99</span></strong></td>
 						</tr>
 					</tbody>
 					</table>
@@ -227,11 +265,7 @@ function printForm()
 									</div>
 								</div>
 							</div>
-
-
 				</div>
-
-
 			</div>
 
 

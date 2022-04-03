@@ -131,6 +131,62 @@ function deleteTopping(toppingId){
 
 }
 
+
+/*
+function updateCost(costToppings) {
+    $.ajax({
+        url: 'index.php?action=updateCost',
+        data: {
+            costTopping: costToppings
+        },
+        success: function(result) {
+            try {
+                json = jQuery.parseJSON(result);
+                console.log(json);
+            } catch (e) {
+                showError("Invalid JSON returned from server: " + result);
+                return;
+            }
+            if (json["success"] === 0) {
+                showError(json["errormsg"]);
+            } else {
+                //getToppings();
+            }
+        },
+        error: function() {
+            showError('Error Reaching index.php');
+        }
+    });
+}
+
+
+function getCost() {
+    console.log('h')
+    $.ajax({
+        url: 'index.php?action=getCost',
+        dataType:"JSON",
+        success: function(json) {
+            console.log(json);
+
+            if (json["success"] === "0") {
+                showError(json["errormsg"]);
+            } else {
+                console.log(json.costTopping.length)
+                if (json.toppings.length > 0) {
+
+                } else {
+                    updateToppingsCost(json.costTopping.costTopping)
+
+                }
+            }
+        },
+        error: function(data) {
+            console.log(data);
+            showError('Error Reaching Server');
+        }
+    });
+}
+*/
 function renderCountToppings(length){
     $("#LengthToppings").empty();
     $("#LengthToppings").append(length);
@@ -164,10 +220,11 @@ function renderCardToppings(ToppingList){
     CardToppings.html(html);
 }
 
-function increaseCosts(cost){
+function increaseCosts(num){
     var lastCost = parseInt($('#ToppingsCost').text());
-    NewCost = lastCost + cost;
-    updateCost(NewCost);
+    NewCost = lastCost + num;
+    updateToppingsCost(NewCost);
+    updateTotalCost(NewCost);
 }
 
 function reduceCost(toppingName){
@@ -183,15 +240,25 @@ function reduceCost(toppingName){
     if (toppingCost != null) {
         var lastCost = parseInt($('#ToppingsCost').text());
         NewCost = lastCost - toppingCost;
-        updateCost(NewCost);
+        updateToppingsCost(NewCost);
+        updateTotalCost(NewCost);
     }
 
 }
 
 
 
-function updateCost(NewCost){
+function updateToppingsCost(NewCost){
     NewCost = (Math.round(NewCost * 100) / 100).toFixed(2);
     $("#ToppingsCost").empty();
     $("#ToppingsCost").append(NewCost);
+}
+
+
+function updateTotalCost(NewCost){
+    var total = 24.99;
+    newTotalCost = total + NewCost;
+    newTotalCost = (Math.round(newTotalCost * 100) / 100).toFixed(2);
+    $("#TotalCost").empty();
+    $("#TotalCost").append(newTotalCost);
 }
