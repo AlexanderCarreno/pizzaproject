@@ -86,7 +86,7 @@ switch($_GET['action']){
 			$result['success'] = 1;
 		} else {
 			$result['success'] = 0;
-			$result['errormsg'] = 'No Topping Entered';
+			$result['errormsg'] = 'No cost Entered';
 		}
 
 		echo json_encode($result);
@@ -123,6 +123,7 @@ function printForm()
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Pizza delivery ACC</title>
+		<link rel="icon" type="image/vnd.microsoft.icon" href="pizza.ico" sizes="32x32">
 
 		<script src="./js/jquery.min.js"></script>
 		<!-- CSS only -->
@@ -201,7 +202,7 @@ function printForm()
 					<table class="table table-striped">
 					<thead>
 						<tr>
-						<th scope="col">Pizza</th>
+						<th scope="col">List of products</th>
 						<th scope="col">$</th>
 						</tr>
 					</thead>
@@ -211,7 +212,7 @@ function printForm()
 						<td>$11.99</td>
 						</tr>
 						<tr>
-						<th class="text-capitalize" scope="row">pizza clasica</th>
+						<th class="text-capitalize" scope="row">classic pizza</th>
 						<td>$12.99</td>
 						</tr>
 						<tr>

@@ -17,6 +17,7 @@ var ToppingList =
 
 $( document ).ready(function() {
     getToppings();
+    getCost();
     renderCardToppings(ToppingList);
 });
 
@@ -29,7 +30,7 @@ function addDefinedTopping(topping){
         success: function(result) {
             try {
                 json = jQuery.parseJSON(result);
-                console.log(json);
+                //console.log(json);
             } catch (e) {
                 showError("Invalid JSON returned from server: " + result);
                 return;
@@ -56,7 +57,7 @@ function addTopping() {
         success: function(result) {
             try {
                 json = jQuery.parseJSON(result);
-                console.log(json);
+                //console.log(json);
             } catch (e) {
                 showError("Invalid JSON returned from server: " + result);
                 return;
@@ -83,7 +84,7 @@ function getToppings() {
             if (json["success"] === "0") {
                 showError(json["errormsg"]);
             } else {
-                console.log(json.toppings.length)
+                //console.log(json.toppings.length)
                 if (json.toppings.length > 0) {
                     $("#listToppings").empty();
                     $.each(json.toppings, function(key, value) {
@@ -101,14 +102,14 @@ function getToppings() {
             }
         },
         error: function(data) {
-            console.log(data);
+            //console.log(data);
             showError('Error Reaching Server');
         }
     });
 }
 
 function deleteTopping(toppingId){
-    console.log(toppingId);
+    //console.log(toppingId);
 
     $.ajax({
         url: 'index.php?action=deleteTopping&toppingId='+toppingId,
@@ -122,7 +123,7 @@ function deleteTopping(toppingId){
             }
         },
         error: function(xhr) {
-            console.log(xhr);
+            //console.log(xhr);
             showError('Error Reaching Server');
         }
 
@@ -131,7 +132,7 @@ function deleteTopping(toppingId){
 }
 
 
-/*
+
 function updateCost(costToppings) {
     $.ajax({
         url: 'index.php?action=updateCost',
@@ -148,8 +149,6 @@ function updateCost(costToppings) {
             }
             if (json["success"] === 0) {
                 showError(json["errormsg"]);
-            } else {
-                //getToppings();
             }
         },
         error: function() {
@@ -160,7 +159,6 @@ function updateCost(costToppings) {
 
 
 function getCost() {
-    console.log('h')
     $.ajax({
         url: 'index.php?action=getCost',
         dataType:"JSON",
@@ -170,12 +168,8 @@ function getCost() {
             if (json["success"] === "0") {
                 showError(json["errormsg"]);
             } else {
-                console.log(json.costTopping.length)
-                if (json.toppings.length > 0) {
-
-                } else {
-                    updateToppingsCost(json.costTopping.costTopping)
-
+                if(json.costTopping !== ''){
+                    increaseCosts(parseInt(json.costTopping));
                 }
             }
         },
@@ -185,7 +179,8 @@ function getCost() {
         }
     });
 }
-*/
+
+
 function renderCountToppings(length){
     $("#LengthToppings").empty();
     $("#LengthToppings").append(length);
@@ -224,6 +219,7 @@ function increaseCosts(num){
     NewCost = lastCost + num;
     updateToppingsCost(NewCost);
     updateTotalCost(NewCost);
+    updateCost(NewCost);
 }
 
 function reduceCost(toppingName){
@@ -231,7 +227,7 @@ function reduceCost(toppingName){
 
     for(var i=0; i < ToppingList.Toppings.length; i++) {
         if(ToppingList.Toppings[i].name == toppingName){
-            console.log(ToppingList.Toppings[i]);
+            //console.log(ToppingList.Toppings[i]);
             toppingCost = ToppingList.Toppings[i].cost;
         }
     }
@@ -241,6 +237,7 @@ function reduceCost(toppingName){
         NewCost = lastCost - toppingCost;
         updateToppingsCost(NewCost);
         updateTotalCost(NewCost);
+        updateCost(NewCost);
     }
 
 }
