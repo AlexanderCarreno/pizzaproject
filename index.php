@@ -207,11 +207,11 @@ function printForm()
 					</thead>
 					<tbody>
 						<tr>
-						<th class="text-capitalize" scope="row">mexican pizza</th>
+						<th class="text-capitalize" scope="row">sodas</th>
 						<td>$11.99</td>
 						</tr>
 						<tr>
-						<th class="text-capitalize" scope="row">pepperoni pizza</th>
+						<th class="text-capitalize" scope="row">pizza clasica</th>
 						<td>$12.99</td>
 						</tr>
 						<tr>

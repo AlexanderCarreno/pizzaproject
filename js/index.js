@@ -5,14 +5,13 @@ var CardToppings = $('#card-toppings');
 var ToppingList = 
 {
     "Toppings":[
-      {"name":"Extra Pepperoni", "cost": 1},
-      {"name":"Extra Ham", "cost": 2},
-      {"name":"Extra Italian sausage", "cost": 1},
-      {"name":"Extra Bacon", "cost": 3},
-      {"name":"Extra Sausage", "cost": 1},
-      {"name":"Extra Mushrooms", "cost": 2},
-      {"name":"Extra Black olives", "cost": 3},
-      {"name":"Extra Pineapple", "cost": 1}
+        {"name":"Pepperoni", "cost": 1, "img": "Pepperoni.jpg"},
+        {"name":"Ham", "cost": 2, "img": "Ham.jpg"},
+        {"name":"Italian sausage", "cost": 1, "img": "ItalianSausage.jpg"},
+        {"name":"Bacon", "cost": 3, "img": "Bacon.jpg"},
+        {"name":"Mushrooms", "cost": 2, "img": "Mushrooms.jpg"},
+        {"name":"Black olives", "cost": 3, "img": "BlackOlives.jpg"},
+        {"name":"Pineapple", "cost": 1, "img": "Pineapple.jpg"}
     ]
 };
 
@@ -203,7 +202,7 @@ function renderCardToppings(ToppingList){
 
         html+=`<div class="col mb-5 animate__animated animate__fadeIn">`;
         html+=`	<div class="card h-100">`;
-        html+=`		<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />`;
+        html+=`		<img class="card-img-top" width="450" height="200" src="img/`+ToppingList.Toppings[i].img+`" alt="..." />`;
         html+=`		<div class="card-body p-4">`;
         html+=`			<div class="text-center">`;
         html+=`				<h5 class="fw-bolder">`+ToppingList.Toppings[i].name+`</h5>`;
