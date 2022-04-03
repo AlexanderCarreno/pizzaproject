@@ -134,6 +134,10 @@ function printForm()
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 		<!-- sweetalert2 soruce -->
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<!-- Mapbox -->
+		<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+		<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
 
 	</head>
 
@@ -180,12 +184,11 @@ function printForm()
 
 
 
-		<!-- Section-->
+		<!-- Page content -->
 		<section>
-
 			<div class="row mt-4 mx-0">
 
-				<!-- Card elements  -->
+				<!-- Card section  -->
 				<div class="col-8">
 					<h1 class="text-center">Toppings list</h1>
 
@@ -196,7 +199,9 @@ function printForm()
 				</div>
 
 
-				<!-- Recive element  -->
+
+
+				<!-- Recive section  -->
 				<div class="col-4 px-3">
 
 					<!-- Table elements -->
@@ -283,13 +288,21 @@ function printForm()
 									</div>
 								</div>
 							</div>
+
+
+
+					<!-- Map -->
+					<h4 class="mt-5">Approximate delivery area</h4>
+					<div id='map' style='width: 500px; height: 200px;'></div>
+					<script src="./js/maps.js"></script>
 				</div>
+
+
+
+
+
+
 			</div>
-
-
-
-
-
         </section>
 
 
