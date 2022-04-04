@@ -15,6 +15,7 @@ var ToppingList =
     ]
 };
 
+
 $( document ).ready(function() {
     getToppings();
     getCost();
@@ -40,6 +41,13 @@ $( "#payment" ).click(function() {
       });
   });
 
+
+
+
+
+
+/////////////////////////////////////////////
+// Here start all methods functions
 function addDefinedTopping(topping){
     $.ajax({
         url: 'index.php?action=addTopping',
@@ -98,12 +106,11 @@ function getToppings() {
     $.ajax({
         url: 'index.php?action=getToppings',
         dataType:"JSON",
-        success: function(json) {
+        success: function(json) { // {"errormsg":"","success":1,"toppings":["Pepperoni"]}
 
             if (json["success"] === "0") {
                 showError(json["errormsg"]);
             } else {
-                //console.log(json.toppings.length)
                 if (json.toppings.length > 0) {
                     $("#listToppings").empty();
                     $.each(json.toppings, function(key, value) {
@@ -128,12 +135,10 @@ function getToppings() {
 }
 
 function deleteTopping(toppingId){
-    //console.log(toppingId);
-
     $.ajax({
         url: 'index.php?action=deleteTopping&toppingId='+toppingId,
         dataType: 'JSON',
-        success: function(result) {
+        success: function(result) { // {"errormsg":"","success":1}
 
             if(result.success === 0){
                 showError(result.message);
@@ -158,10 +163,9 @@ function updateCost(costToppings) {
         data: {
             costTopping: costToppings
         },
-        success: function(result) {
+        success: function(result) { // {"errormsg":"","success":1}
             try {
                 json = jQuery.parseJSON(result);
-                //console.log(json);
             } catch (e) {
                 showError("Invalid JSON returned from server: " + result);
                 return;
@@ -181,9 +185,7 @@ function getCost() {
     $.ajax({
         url: 'index.php?action=getCost',
         dataType:"JSON",
-        success: function(json) {
-            //console.log(json);
-
+        success: function(json) { // {"errormsg":"","success":1,"costTopping":"1"}
             if (json["success"] === "0") {
                 showError(json["errormsg"]);
             } else {
@@ -199,6 +201,18 @@ function getCost() {
     });
 }
 
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////
+// The functionalities of the tool begin here
 
 function renderCountToppings(length){
     $("#LengthToppings").empty();
@@ -235,7 +249,7 @@ function renderCardToppings(ToppingList){
 
 function increaseCosts(num){
     var lastCost = parseInt($('#ToppingsCost').text());
-    NewCost = lastCost + num;
+    NewCost = lastCost + num; //2 = 1 + 1
     updateToppingsCost(NewCost);
     updateTotalCost(NewCost);
     updateCost(NewCost);
@@ -253,7 +267,7 @@ function reduceCost(toppingName){
 
     if (toppingCost != null) {
         var lastCost = parseInt($('#ToppingsCost').text());
-        NewCost = lastCost - toppingCost;
+        NewCost = lastCost - toppingCost; // 2 = 3 - 1
         updateToppingsCost(NewCost);
         updateTotalCost(NewCost);
         updateCost(NewCost);

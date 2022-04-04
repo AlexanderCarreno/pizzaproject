@@ -5,15 +5,8 @@ var options = {
 };
   
 function success(pos) {
-    var crd = pos.coords;
-    
-    //console.log('Your current position is:');
-    //console.log('Latitude : ' + crd.latitude);
-    //console.log('Longitude: ' + crd.longitude);
-    //console.log('More or less ' + crd.accuracy + ' meters.');
-
+    var crd = pos.coords; // crd.lolongitude = 1.00, crd.latitude = 1.00
     mapboxgl.accessToken = 'pk.eyJ1Ijoic3Vtc3VtZXIiLCJhIjoiY2t0dzRzZHV1MHFidzJ3cW01c3ZhNWY3aSJ9.ltCHiShuwSZrohgLhM4ZOA';
-    //lngLat  = [-100.192842,25.722559];
     lngLat  = [crd.longitude,crd.latitude];
 
     var mapa = new mapboxgl.Map({
@@ -36,6 +29,8 @@ function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
 };
 
+
+// Script start here
 if (!navigator.geolocation) {
     alert('The Browser dose not support Geolocation');
 }else{
